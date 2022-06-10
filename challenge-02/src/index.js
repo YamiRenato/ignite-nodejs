@@ -59,6 +59,8 @@ function checksTodoExists(request, response, next) {
 function findUserById(request, response, next) {
   const { id } = request.params;
 
+  if (!validate(id)) return response.status(400).json({error: "Invalid id!"})
+
   const user = users.find((user) => user.id === id);
 
   if (!user) {
